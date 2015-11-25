@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello World!</title>
+    <script src="client/neutron.client.js"></script>
+</head>
+<body>
+    <h1>Hello World!</h1>
+    <p>
+        We are using node
+        <script>document.write(process.versions.node)</script>,
+        Chrome
+        <script>document.write(process.versions.chrome)</script>,
+        Electron
+        <script>document.write(process.versions.electron)</script>,
+        and Neutron.
+    </p>
+    <p>
+        The current time, according to the server, is <span id="result"></span> 
+    </p>
+    <script>
+        neutron.call(['neutron', 'example', 'server', 'helper', 'getCurrentTime'], ['format'], { 'format': 'd' }, function (err, val) {
+            document.getElementById('result').innerText = val;
+        });
+    </script>
+</body>
+</html>
