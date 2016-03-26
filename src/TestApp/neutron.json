@@ -1,0 +1,6 @@
+﻿{
+    "index": "html/index.html",
+    "server": {
+        "command": "node server/app.js $NEUTRON_URL$"
+    }
+}

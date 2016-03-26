@@ -1,0 +1,6 @@
+{
+  "name": "TestApp",
+  "version": "0.0.0",
+  "description": "TestApp",
+  "main": "server/app.js"
+}

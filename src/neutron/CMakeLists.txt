@@ -1,12 +1,14 @@
 cmake_minimum_required(VERSION 3.2)
 
+file(GLOB_RECURSE HEADERS "*.h")
+
 set(SOURCES
     neutron.cpp
     neutron_app.cpp
     neutron_handler.cpp)
 
 if(OS_WINDOWS)
-    add_executable(neutron WIN32 ${SOURCES})
+    add_executable(neutron WIN32 ${SOURCES} ${HEADERS})
     add_dependencies(neutron libcef_dll_wrapper)
     target_link_libraries(neutron libcef_lib libcef_dll_wrapper)
 
