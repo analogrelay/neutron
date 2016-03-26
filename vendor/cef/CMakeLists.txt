@@ -1,0 +1,7 @@
+add_subdirectory("${NEUTRON_BUILD_PLATFORM}/libcef_dll")
+
+add_library(libcef_lib ${CEF_LIBTYPE} IMPORTED GLOBAL)
+set_target_properties(libcef_lib PROPERTIES
+    IMPORTED_LOCATION "${CEF_LIB_RELEASE}"
+    IMPORTED_LOCATION_DEBUG "${CEF_LIB_DEBUG}"
+    IMPORTED_LOCATION_RELEASE "${CEF_LIB_RELEASE}")

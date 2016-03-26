@@ -1,5 +1,10 @@
 @echo off
 
+
 pushd "%~dp0\.."
-git clean -xdf -e vendor
+if "%1"=="-f" (
+    git clean -xdf -e vendor
+) else (
+    git clean -xdn -e vendor
+)
 popd
