@@ -46,4 +46,19 @@ if(OS_WINDOWS)
         icudtl.dat
         locales
     )
+elseif(OS_MACOSX)
+    # Platform-specific compiler/linker flags.
+    set(CEF_LIBTYPE                 SHARED)
+
+    # Standard libraries.
+    set(CEF_STANDARD_LIBS "-lpthread" "-framework Cocoa" "-framework AppKit")
+
+    # CEF directory paths.
+    set(CEF_BINARY_DIR          "${NEUTRON_CEF_ROOT}/$<CONFIGURATION>")
+    set(CEF_BINARY_DIR_DEBUG    "${NEUTRON_CEF_ROOT}/Debug")
+    set(CEF_BINARY_DIR_RELEASE  "${NEUTRON_CEF_ROOT}/Release")
+
+    # CEF library paths.
+    set(CEF_LIB_DEBUG   "${CEF_BINARY_DIR_DEBUG}/Chromium Embedded Framework.framework/Chromium Embedded Framework")
+    set(CEF_LIB_RELEASE "${CEF_BINARY_DIR_RELEASE}/Chromium Embedded Framework.framework/Chromium Embedded Framework")
 endif()

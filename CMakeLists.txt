@@ -6,8 +6,8 @@ project(neutron
         VERSION 0.0.1
         LANGUAGES CXX)
 
-include(cmake/macros.cmake)
 include(cmake/vars.cmake)
+include(cmake/macros.cmake)
 include(vendor/cef/cef.cmake)
 
 if(OS_WINDOWS)

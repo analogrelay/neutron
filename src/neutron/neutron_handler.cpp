@@ -104,6 +104,7 @@ void neutron_handler::CloseAllBrowsers(bool force_close) {
         (*it)->GetHost()->CloseBrowser(force_close);
 }
 
+#if WIN32
 void neutron_handler::OnTitleChange(CefRefPtr<CefBrowser> browser,
                                   const CefString& title) {
   CEF_REQUIRE_UI_THREAD();
@@ -111,3 +112,4 @@ void neutron_handler::OnTitleChange(CefRefPtr<CefBrowser> browser,
   CefWindowHandle hwnd = browser->GetHost()->GetWindowHandle();
   SetWindowText(hwnd, std::wstring(title).c_str());
 }
+#endif
