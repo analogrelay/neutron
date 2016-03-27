@@ -1,5 +1,5 @@
 ﻿{
-    "index": "html/index.html",
+    "index": "client/index.html",
     "server": {
         "command": "node server/app.js $NEUTRON_URL$"
     }

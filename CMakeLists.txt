@@ -23,6 +23,7 @@ if(OS_WINDOWS)
 endif()
 
 include_directories(.)
+include_directories(vendor/jsoncpp)
 include_directories(vendor/cef/${NEUTRON_BUILD_PLATFORM})
 
 add_subdirectory(vendor/cef)
