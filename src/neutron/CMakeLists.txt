@@ -13,6 +13,7 @@ set(SOURCES
     neutron.cpp
     neutron_app.cpp
     neutron_broker.cpp
+    neutron_server.cpp
     neutron_handler.cpp
     neutron_app_definition.cpp)
 source_group("Source Files" FILES ${SOURCES})

@@ -1,6 +1,6 @@
 ﻿{
     "index": "client/index.html",
     "server": {
-        "command": "node server/app.js $NEUTRON_URL$"
+        "command": "C:\\Users\\Andrew\\appdata\\local\\scoop\\apps\\nodejs\\0.12.3\\nodejs\\node.exe server/app.js"
     }
 }

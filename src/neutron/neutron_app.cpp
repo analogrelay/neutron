@@ -1,6 +1,7 @@
 #include <string>
 
 #include "neutron_app.h"
+#include "neutron_server.h"
 #include "neutron_handler.h"
 #include "neutron_app_definition.h"
 
@@ -44,6 +45,12 @@ void neutron_app::OnContextInitialized() {
     {
         // TODO: Error handling
         exit(2);
+    }
+    m_server = neutron_server::start(m_definition->base_directory(), m_definition->server_command());
+    if (!m_server)
+    {
+        // TODO: Error handling
+        exit(3);
     }
 
     // Create the first browser window.
