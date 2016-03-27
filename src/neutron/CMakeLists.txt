@@ -1,6 +1,15 @@
 cmake_minimum_required(VERSION 3.2)
 
-file(GLOB_RECURSE HEADERS "*.h")
+set(HEADERS
+    neutron_app.h
+    neutron_app_definition.h
+    neutron_broker.h
+    neutron_handler.h
+    neutron_server.h
+    pal.h)
+if(OS_WINDOWS)
+    list(APPEND HEADERS windows_neutron_server.h)
+endif()
 source_group("Header Files" FILES ${HEADERS})
 
 set(JSON_CPP
@@ -16,6 +25,11 @@ set(SOURCES
     neutron_server.cpp
     neutron_handler.cpp
     neutron_app_definition.cpp)
+
+if(OS_WINDOWS)
+    list(APPEND SOURCES windows_neutron_server.cpp)
+endif()
+
 source_group("Source Files" FILES ${SOURCES})
 
 if(OS_WINDOWS)
