@@ -1,16 +1,22 @@
 cmake_minimum_required(VERSION 3.2)
 
 set(HEADERS
+    common.h
     neutron_app.h
     neutron_app_definition.h
     neutron_broker.h
     neutron_handler.h
     neutron_server.h
     pal.h)
-if(OS_WINDOWS)
-    list(APPEND HEADERS windows/windows_neutron_server.h)
-endif()
-source_group("Header Files" FILES ${HEADERS})
+source_group("Headers" FILES ${HEADERS})
+
+set(WINDOWS_HEADERS
+    windows/windows_neutron_server.h)
+source_group("Headers\\Windows" FILES ${WINDOWS_HEADERS})
+
+set(MAC_HEADERS
+    mac/mac_neutron_server.h)
+source_group("Headers\\Mac OS X" FILES ${MAC_HEADERS})
 
 set(JSON_CPP
     ../../vendor/jsoncpp/jsoncpp.cpp
@@ -24,32 +30,46 @@ set(SOURCES
     neutron_server.cpp
     neutron_handler.cpp
     neutron_app_definition.cpp)
+source_group("Sources" FILES ${SOURCES})
+
+set(WINDOWS_SOURCES
+     windows/neutron.cpp
+     windows/windows_neutron_server.cpp)
+source_group("Sources\\Windows" FILES ${WINDOWS_SOURCES})
+
+# No need to put the helper sources in a group. It ends up in a separate project.
+set(HELPER_SOURCES
+    mac/process_helper_mac.cpp)
+
+set(MAC_SOURCES
+    mac/neutron.mm
+    mac/mac_neutron_server.cpp)
+source_group("Sources\\Mac OS X" FILES ${MAC_SOURCES})
+
+set(RESOURCES
+    mac/Resources/English.lproj/InfoPlist.strings
+    mac/Resources/English.lproj/MainMenu.xib
+    mac/Resources/Info.plist
+    mac/Resources/cefsimple.icns)
 
 if(OS_WINDOWS)
-    list(APPEND SOURCES
-         windows/neutron.cpp
-         windows/windows_neutron_server.cpp)
+    set(PLATFORM_SOURCES ${WINDOWS_SOURCES})
+    set(PLATFORM_HEADERS ${WINDOWS_HEADERS})
 elseif(OS_MACOSX)
-    list(APPEND SOURCES
-         mac/neutron.mm)
-    set(HELPER_SOURCES
-        mac/process_helper_mac.cpp)
+    set(PLATFORM_SOURCES ${MAC_SOURCES})
+    set(PLATFORM_HEADERS ${MAC_HEADERS})
 endif()
 
-source_group("Source Files" FILES ${SOURCES})
+set(VENDOR ${JSON_CPP})
 
-if(OS_MACOSX)
-    set(RESOURCES
-        mac/Resources/English.lproj/InfoPlist.strings
-        mac/Resources/English.lproj/MainMenu.xib
-        mac/Resources/Info.plist
-        mac/Resources/cefsimple.icns)
-endif()
-
-set(ALL_SOURCES ${SOURCES} ${HEADERS} ${JSON_CPP})
+set(ALL_SOURCES ${SOURCES} ${PLATFORM_SOURCES} ${HEADERS} ${PLATFORM_HEADERS} ${VENDOR})
 
 set(CEF_TARGET "neutron")
 set(CEF_HELPER_TARGET "neutron_Helper")
+
+SET_CEF_TARGET_OUT_DIR()
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 if(OS_WINDOWS)
     add_executable(${CEF_TARGET} WIN32 ${ALL_SOURCES})

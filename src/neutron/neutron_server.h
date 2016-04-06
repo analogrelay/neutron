@@ -1,8 +1,8 @@
 #pragma once
 
-#include "include/cef_base.h"
+#include "common.h"
 
-class neutron_server abstract : public CefBase {
+class neutron_server : public CefBase {
 public:
     static CefRefPtr<neutron_server> start(const CefString& working_dir, const CefString& command);
 };

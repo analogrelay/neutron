@@ -1,10 +1,12 @@
 #pragma once
 
+#include "common.h"
+
 #include "include/cef_base.h"
 
 class neutron_app_definition : public CefBase {
 public:
-    static CefRefPtr<neutron_app_definition> neutron_app_definition::load(const CefString& definition_path);
+    static CefRefPtr<neutron_app_definition> load(const CefString& definition_path);
 
     CefString index();
     const CefString& base_directory() { return this->m_base_directory; };

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "common.h"
+
 #include "include/cef_app.h"
 
 #include "neutron_server.h"

@@ -1,5 +1,4 @@
-#include <fstream>
-#include <algorithm>
+#include "common.h"
 
 #include "pal.h"
 #include "json/json.h"
@@ -19,7 +18,7 @@ CefRefPtr<neutron_app_definition> neutron_app_definition::load(const CefString& 
 
     // Load the file, then close it
     {
-        std::ifstream file(definition_path.c_str(), std::ifstream::in);
+        std::ifstream file(definition_path, std::ifstream::in);
 
         // Skip byte-order mark
         if (file.peek() == 0xEF) {
@@ -51,10 +50,11 @@ CefRefPtr<neutron_app_definition> neutron_app_definition::load(const CefString& 
 }
 
 CefString neutron_app_definition::index() {
-    std::wstring ret;
+    base::string16 ret;
     ret.reserve(m_base_directory.length() + m_index_path.length() + 1);
+    m_base_directory.c_str();
     ret.append(m_base_directory.c_str());
     ret.push_back(pal::directory_separator);
     ret.append(m_index_path.c_str());
-    return ret;
+    return CefString(ret.c_str());
 }

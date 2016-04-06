@@ -1,8 +1,8 @@
 #pragma once
 
-#include "include/cef_client.h"
+#include "common.h"
 
-#include <list>
+#include "include/cef_client.h"
 
 class neutron_handler : public CefClient,
     public CefDisplayHandler,

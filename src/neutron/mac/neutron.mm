@@ -5,8 +5,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-#include "neutron_app.h"
-#include "neutron_handler.h"
+#include "../neutron_app.h"
+#include "../neutron_handler.h"
 #include "include/cef_application_mac.h"
 #include "include/wrapper/cef_helpers.h"
 
@@ -87,7 +87,7 @@
 // Create the application on the UI thread.
 - (void)createApplication:(id)object {
   [NSApplication sharedApplication];
-  [NSBundle loadNibNamed:@"MainMenu" owner:NSApp];
+  [[NSBundle mainBundle] loadNibNamed:@"MainMenu" owner:NSApp topLevelObjects:nil];
 
   // Set the delegate for application events.
   [[NSApplication sharedApplication] setDelegate:self];

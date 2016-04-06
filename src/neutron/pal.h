@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 namespace pal {
 #if WIN32
     const wchar_t directory_separator = L'\\';

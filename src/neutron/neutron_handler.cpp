@@ -1,7 +1,5 @@
+#include "common.h"
 #include "neutron_handler.h"
-
-#include <sstream>
-#include <string>
 
 #include "include/base/cef_bind.h"
 #include "include/cef_app.h"

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "common.h"
+
 #include "include/cef_v8.h"
 
 class neutron_broker : public CefV8Accessor {
